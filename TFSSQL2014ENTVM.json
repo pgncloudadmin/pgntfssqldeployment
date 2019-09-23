@@ -9,9 +9,9 @@
             "type": "string"
         },
 
-        "networkSecurityGroupName": {
-            "type": "string"
-        },
+  //      "networkSecurityGroupName": {
+  //          "type": "string"
+  //      },
         "subnetName": {
             "type": "string"
         },
@@ -69,7 +69,7 @@
          }   
     },
     "variables": {
-        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
+ //       "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
         "vnetId": "[resourceId('ParagonDevQAVNet','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
         "DomUserNameSlashes": "[concat('\\',parameters('DomUserName'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
@@ -80,9 +80,9 @@
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2018-10-01",
             "location": "[parameters('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]"
-            ],
+  //          "dependsOn": [
+  //              "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]"
+  //          ],
             "properties": {
                 "ipConfigurations": [
                     {
@@ -95,20 +95,20 @@
                         }
                     }
                 ],
-                "networkSecurityGroup": {
-                    "id": "[variables('nsgId')]"
-                }
+  //              "networkSecurityGroup": {
+  //                  "id": "[variables('nsgId')]"
+  //              }
             }
         },
-        {
-            "name": "[parameters('networkSecurityGroupName')]",
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2018-08-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "securityRules": []
-            }
-        },
+  //      {
+  //          "name": "[parameters('networkSecurityGroupName')]",
+  //          "type": "Microsoft.Network/networkSecurityGroups",
+  //          "apiVersion": "2018-08-01",
+  //          "location": "[parameters('location')]",
+  //          "properties": {
+  //              "securityRules": []
+  //          }
+  //      },
         {
             "name": "[parameters('virtualMachineName')]",
             "type": "Microsoft.Compute/virtualMachines",
