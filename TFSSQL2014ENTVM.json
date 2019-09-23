@@ -8,10 +8,6 @@
         "networkInterfaceName": {
             "type": "string"
         },
-
-  //      "networkSecurityGroupName": {
-  //          "type": "string"
-  //      },
         "subnetName": {
             "type": "string"
         },
@@ -69,8 +65,7 @@
          }   
     },
     "variables": {
- //       "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
-        "vnetId": "[resourceId('ParagonDevQAVNet','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+         "vnetId": "[resourceId('ParagonDevQAVNet','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
         "DomUserNameSlashes": "[concat('\\',parameters('DomUserName'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
 	},
@@ -80,9 +75,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2018-10-01",
             "location": "[parameters('location')]",
-  //          "dependsOn": [
-  //              "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]"
-  //          ],
+            "dependsOn": [],
             "properties": {
                 "ipConfigurations": [
                     {
@@ -94,21 +87,9 @@
                             "privateIPAllocationMethod": "Dynamic"
                         }
                     }
-                ],
-  //              "networkSecurityGroup": {
-  //                  "id": "[variables('nsgId')]"
-  //              }
-            }
-        },
-  //      {
-  //          "name": "[parameters('networkSecurityGroupName')]",
-  //          "type": "Microsoft.Network/networkSecurityGroups",
-  //          "apiVersion": "2018-08-01",
-  //          "location": "[parameters('location')]",
-  //          "properties": {
-  //              "securityRules": []
-  //          }
-  //      },
+                ]
+               }
+            },
         {
             "name": "[parameters('virtualMachineName')]",
             "type": "Microsoft.Compute/virtualMachines",
