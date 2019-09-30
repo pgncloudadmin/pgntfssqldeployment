@@ -65,7 +65,7 @@
          }   
     },
     "variables": {
-         "vnetId": "[resourceId('ParagonDevQAVNet','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+       "vnetId": "[resourceId('ParagonDevQAVNet-Migrated','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
         "DomUserNameSlashes": "[concat('\\',parameters('DomUserName'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
 	},
@@ -88,8 +88,9 @@
                         }
                     }
                 ]
-               }
-            },
+                
+            }
+        },
         {
             "name": "[parameters('virtualMachineName')]",
             "type": "Microsoft.Compute/virtualMachines",
